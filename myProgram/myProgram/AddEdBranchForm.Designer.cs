@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.btnCansel = new System.Windows.Forms.Button();
             this.btnOk = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
@@ -38,6 +39,11 @@
             this.txtAgent = new System.Windows.Forms.TextBox();
             this.txtAddress = new System.Windows.Forms.TextBox();
             this.txtName = new System.Windows.Forms.TextBox();
+            this.myDataBaseDataSet = new myProgram.myDataBaseDataSet();
+            this.branchBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.branchTableAdapter = new myProgram.myDataBaseDataSetTableAdapters.BranchTableAdapter();
+            ((System.ComponentModel.ISupportInitialize)(this.myDataBaseDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.branchBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // btnCansel
@@ -102,6 +108,7 @@
             // 
             // txtMail
             // 
+            this.txtMail.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.branchBindingSource, "email", true));
             this.txtMail.Location = new System.Drawing.Point(133, 86);
             this.txtMail.Name = "txtMail";
             this.txtMail.Size = new System.Drawing.Size(354, 20);
@@ -109,6 +116,7 @@
             // 
             // txtAgent
             // 
+            this.txtAgent.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.branchBindingSource, "fio", true));
             this.txtAgent.Location = new System.Drawing.Point(133, 60);
             this.txtAgent.Name = "txtAgent";
             this.txtAgent.Size = new System.Drawing.Size(354, 20);
@@ -116,6 +124,7 @@
             // 
             // txtAddress
             // 
+            this.txtAddress.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.branchBindingSource, "address", true));
             this.txtAddress.Location = new System.Drawing.Point(133, 34);
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Size = new System.Drawing.Size(354, 20);
@@ -123,10 +132,25 @@
             // 
             // txtName
             // 
+            this.txtName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.branchBindingSource, "name", true));
             this.txtName.Location = new System.Drawing.Point(133, 7);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(354, 20);
             this.txtName.TabIndex = 11;
+            // 
+            // myDataBaseDataSet
+            // 
+            this.myDataBaseDataSet.DataSetName = "myDataBaseDataSet";
+            this.myDataBaseDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // branchBindingSource
+            // 
+            this.branchBindingSource.DataMember = "Branch";
+            this.branchBindingSource.DataSource = this.myDataBaseDataSet;
+            // 
+            // branchTableAdapter
+            // 
+            this.branchTableAdapter.ClearBeforeFill = true;
             // 
             // AddEdBranchForm
             // 
@@ -149,6 +173,10 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "AddEdBranchForm";
             this.Text = "Добавление/Редактирование филиала";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AddEdBranchForm_FormClosing);
+            this.Load += new System.EventHandler(this.AddEdBranchForm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.myDataBaseDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.branchBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -166,5 +194,9 @@
         private System.Windows.Forms.TextBox txtAgent;
         private System.Windows.Forms.TextBox txtAddress;
         private System.Windows.Forms.TextBox txtName;
+        public myDataBaseDataSet myDataBaseDataSet;
+        public System.Windows.Forms.BindingSource branchBindingSource;
+        public myDataBaseDataSetTableAdapters.BranchTableAdapter branchTableAdapter;
+      
     }
 }
